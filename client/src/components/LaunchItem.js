@@ -1,4 +1,6 @@
 import React from 'react'
+import classNames from 'classnames'
+import { Link } from 'react-router-dom'
 
 export default function LaunchItem({
   launch: {
@@ -10,9 +12,12 @@ export default function LaunchItem({
 }) {
   return (
     <div>
-      <h1>Mission name: {mission_name}</h1>
+      <h1>Mission name: <span className={classNames({
+        'text-success': launch_success,
+        'text-danger': !launch_success
+      })}>{mission_name}</span></h1>
       <p>Date: {launch_date_local}</p>
-      <button>Launch Details</button>
+      <Link to={`/launch/${flight_number}`}>Launch Details</Link>
     </div>
   )
 }
